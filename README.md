@@ -25,4 +25,23 @@ Technologies:
     • Materialize
     • WEBSocket
     • Spring
+      GitLab
     • ...
+    
+Version 1.0 (MVP):
+    • Oauth signin/up
+    • Candidate profiles
+    • Constituent Accounts
+    • Constituents can favorite candidates
+    • Constituents raise concerns/issues
+    • Candidates see concerns/issues and add to platform
+
+Version 1.1:
+    • Constituents can vote on issues
+    • Candidates know how their issues are being voted on
+    • Everyone can see Voting trends/Graphs (Graphical API)
+
+Version 1.2:
+    • Constituents receive notifications when Candidates change profile/platform changes (WEBsockets)
+    • Constituents receive notifications when their issues are adopted by Candidates (WEBsockets)
+    • 
