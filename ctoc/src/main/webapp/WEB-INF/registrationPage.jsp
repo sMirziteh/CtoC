@@ -42,13 +42,13 @@
 						<h6 class="center-align">Candidate Sign-up</h6>
 					</p>
 					<div class="divider"></div>
-					<form:form action="" method="post" modelAttribute="candidate">
+					<form:form action="/registration/candidate" method="post" modelAttribute="candidate">
 						<div class="col s9 input-field">
 							<form:input path="name" id="name" />
 							<label for="name">Name</label>
 						</div>
 						<div class="col s9 input-field">
-							<form:input path="email" id="email" type="email"/>
+							<form:input path="username" id="email" type="email"/>
 							<label for="email">Email</label>
 						</div>
 						<div class="col s9 input-field">
@@ -142,13 +142,13 @@
 					<h6 class="center-align">Constituent Sign-up</h6>
 				</p>
 					<div class="divider"></div>
-					<form:form action="" method="post" modelAttribute="constit">
+					<form:form action="/registration/constituent" method="post" modelAttribute="constit">
 						<div class="col s9 input-field">
 							<form:input path="name" id="name"/>
 							<label for="name">Name</label>
 						</div>
 						<div class="col s9 input-field">
-							<form:input path="email" id="email" type="email"/>
+							<form:input path="username" id="email" type="email"/>
 							<label for="email">Email</label>
 						</div>
 						<div class="col s9 input-field">

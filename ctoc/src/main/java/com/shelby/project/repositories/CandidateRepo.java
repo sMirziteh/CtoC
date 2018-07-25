@@ -8,5 +8,5 @@ import com.shelby.project.models.Candidate;
 @Repository
 public interface CandidateRepo extends CrudRepository<Candidate, Long>{
 
-	Candidate findByEmail(String email);
+	Candidate findByUsername(String username);
 }

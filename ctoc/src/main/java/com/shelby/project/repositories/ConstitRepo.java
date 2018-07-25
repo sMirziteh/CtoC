@@ -8,5 +8,5 @@ import com.shelby.project.models.Constit;
 @Repository
 public interface ConstitRepo extends CrudRepository<Constit, Long>{
 
-	Constit findByEmail(String email);
+	Constit findByUsername(String username);
 }
