@@ -16,4 +16,9 @@ public class SiteController {
 	public String registerForm(@Valid @ModelAttribute("candidate") Candidate candidate, @Valid @ModelAttribute("constit") Constit constit) {
 		return "registrationPage.jsp";
 	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		return "login.jsp";
+	}
 }

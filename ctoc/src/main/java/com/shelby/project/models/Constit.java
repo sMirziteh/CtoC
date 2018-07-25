@@ -33,7 +33,6 @@ public class Constit {
 	private String email;
 	private String city;
 	private String state;
-	@Size(min=5, max=5, message="zipcode can only be 5 characters")
 	private int zipcode;
 	@Column(updatable=false)
 	private Date createdAt;
