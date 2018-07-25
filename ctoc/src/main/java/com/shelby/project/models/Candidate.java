@@ -33,17 +33,17 @@ public class Candidate{
 	private String city;
 	private String state;
 
-	private int zipcode;
+	private String zipcode;
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
-	private Byte profilePic;
+	private String profilePic;
 	private Integer phone;
 	private String website;
 	private String linkedin;
 	private String facebook;
 	private String Instagram;
-	private String district;
+	private Integer district;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -127,11 +127,11 @@ public class Candidate{
 		this.state = state;
 	}
 
-	public int getZipcode() {
+	public String getZipcode() {
 		return zipcode;
 	}
 
-	public void setZipcode(int zipcode) {
+	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
 
@@ -151,11 +151,11 @@ public class Candidate{
 		this.updatedAt = updatedAt;
 	}
 
-	public Byte getProfilePic() {
+	public String getProfilePic() {
 		return profilePic;
 	}
 
-	public void setProfilePic(Byte profilePic) {
+	public void setProfilePic(String profilePic) {
 		this.profilePic = profilePic;
 	}
 
@@ -199,11 +199,11 @@ public class Candidate{
 		Instagram = instagram;
 	}
 
-	public String getDistrict() {
+	public Integer getDistrict() {
 		return district;
 	}
 
-	public void setDistrict(String district) {
+	public void setDistrict(Integer district) {
 		this.district = district;
 	}
 

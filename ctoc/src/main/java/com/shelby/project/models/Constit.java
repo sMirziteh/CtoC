@@ -33,7 +33,7 @@ public class Constit {
 	private String email;
 	private String city;
 	private String state;
-	private int zipcode;
+	private String zipcode;
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
@@ -145,13 +145,13 @@ public class Constit {
 
 
 
-	public int getZipcode() {
+	public String getZipcode() {
 		return zipcode;
 	}
 
 
 
-	public void setZipcode(int zipcode) {
+	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
 
