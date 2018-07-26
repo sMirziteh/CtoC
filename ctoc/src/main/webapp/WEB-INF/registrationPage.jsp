@@ -43,6 +43,7 @@
 					</p>
 					<div class="divider"></div>
 					<form:form action="/registration/candidate" method="post" modelAttribute="candidate">
+						<form:errors path="*" class="red-text/>
 						<div class="col s9 input-field">
 							<form:input path="name" id="name" />
 							<label for="name">Name</label>
@@ -143,6 +144,7 @@
 				</p>
 					<div class="divider"></div>
 					<form:form action="/registration/constituent" method="post" modelAttribute="constit">
+						<form:errors path="*" class="red-text"/>
 						<div class="col s9 input-field">
 							<form:input path="name" id="name"/>
 							<label for="name">Name</label>

@@ -25,11 +25,13 @@ public class Candidate{
 	@GeneratedValue
 	private Long id;
 	private String name;
+	@Size(min=8, message="Password must be greater than 8 characters")
 	private String password;
 	@Transient
 	private String passwordConfirmation;
 	@Email
 	private String username;
+	@Size(min=2, message="City/Town name must be longer than 2 characters")
 	private String city;
 	private String state;
 
