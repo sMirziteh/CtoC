@@ -45,14 +45,22 @@
 		<div class="section"></div>
 		<div class="row">
 				<div class="col s12 card blue-text text-darken-4">
-					<h5 class="center-align"><a href="#" class="blue-text text-darken-4">See Candidates</a></h5>
+					<h5 class="center-align"><a href="#" class="blue-text text-darken-4">
+					<i class="tiny material-icons red-text">star</i> See Candidates</a> 
+					<i class="tiny material-icons red-text">star</i>
+					</h5>
 				</div>
 				<div class="col s12 card blue-text text-darken-4">
-					<h5 class="center-align"><a href="#" class="blue-text text-darken-4">See Issues</a></h5>
+					<h5 class="center-align">
+					<i class="tiny material-icons red-text">star</i> <a href="#" class="blue-text text-darken-4">See Issues</a> 
+					<i class="tiny material-icons red-text">star</i>
+					</h5>
 				</div>
 				<div class="section">
 				<div class="col s12 card blue-text text-darken-4">
-					<h5 class="center-align ">CtoC Mission</h5>
+					<h5 class="center-align ">
+					<i class="tiny material-icons red-text">star</i> CtoC Mission <i class="tiny material-icons red-text">star</i>
+					</h5>
 					<p class="center-align">Connect engaged citizens with engaging candidates</p>
 					<h6 class="center-align"><b>Constituents</b></h6>
 					<p class="center-align">View candidate biographies, political platform, and contact information</p>
