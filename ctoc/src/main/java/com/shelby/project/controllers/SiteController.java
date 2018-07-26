@@ -79,7 +79,11 @@ public class SiteController {
 		return "landing.jsp";
 	}
 
+<<<<<<< HEAD
 	@RequestMapping(value = { "/home" })
+=======
+	@RequestMapping(value = {"/home" })
+>>>>>>> homepage
 	public String home(Principal principal, Model model) {
 		String username = principal.getName();
 		Candidate cand = ss.findCandByUsername(username);
