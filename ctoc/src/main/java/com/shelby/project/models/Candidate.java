@@ -36,6 +36,7 @@ public class Candidate{
 	private String state;
 
 	private String zipcode;
+	private String pparty;
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
@@ -241,6 +242,14 @@ public class Candidate{
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
+
+	public String getPparty() {
+		return pparty;
+	}
+
+	public void setPparty(String pparty) {
+		this.pparty = pparty;
+	}
 
 	
 }

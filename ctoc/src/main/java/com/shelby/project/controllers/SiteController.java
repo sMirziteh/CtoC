@@ -79,17 +79,19 @@ public class SiteController {
 		return "landing.jsp";
 	}
 
-	@RequestMapping(value = {"/home" })
+	@RequestMapping(value = {"/userLanding" })
 	public String home(Principal principal, Model model) {
 		String username = principal.getName();
 		Candidate cand = ss.findCandByUsername(username);
 		Constit constit = ss.findConstByEmail(username);
 		if (cand != null) {
 			model.addAttribute("currentUser", cand);
+			return "candLandingPage.jsp";
 		} else if (constit != null) {
 			model.addAttribute("currentUser", constit);
+			return "constLanding.jsp";
 		}
-		return "homePage.jsp";
+		return "landing";
 	}
 	
 	@RequestMapping("/cand")
