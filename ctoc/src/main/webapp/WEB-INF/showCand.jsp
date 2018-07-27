@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,32 +46,25 @@
 	<div class="container">
 		<div class="section"></div>
 		<div class="row">
-				<div class="col s12 card blue-text text-darken-4">
-					<h5 class="center-align"><a href="/showCandidates" class="blue-text text-darken-4">
-					<i class="tiny material-icons red-text">star</i> See Candidates</a> 
-					<i class="tiny material-icons red-text">star</i>
-					</h5>
-				</div>
-				<div class="col s12 card blue-text text-darken-4">
-					<h5 class="center-align">
-					<i class="tiny material-icons red-text">star</i> <a href="#" class="blue-text text-darken-4">See Issues</a> 
-					<i class="tiny material-icons red-text">star</i>
-					</h5>
-				</div>
-				<div class="section">
-				<div class="col s12 card blue-text text-darken-4">
-					<h5 class="center-align ">
-					<i class="tiny material-icons red-text">star</i> CtoC Mission <i class="tiny material-icons red-text">star</i>
-					</h5>
-					<p class="center-align">Connect engaged citizens with engaging candidates</p>
-					<h6 class="center-align"><b>Constituents</b></h6>
-					<p class="center-align">View candidate biographies, political platform, and contact information</p>
-					<p class="center-align">Raise concerns to candidates and other constituents</p>
-					<h6 class="center-align"><b>Candidates</b></h6>
-					<p class="center-align">Create informative profiles</p>
-					<p class="center-align">Engage with your constituents by offering all of your contact information in one place</p>
-					<p class="center-align">See your constituents' concerns and add them to your platform</p>
-				</div>
+				<div class="col s12 card">
+				<h5 class="center-align">Candidates</h5>
+				<ul class="collection  z-depth-1">
+					<c:forEach items="${candidates}" var="cand">
+					<a href="/showCandidate/${cand.id }?${_csrf.parameterName}=${_csrf.token}" class="blue-text text-darken-4">
+						<li class="collection-item avatar"><img src="${cand.profilePic }"
+								alt="candidate picture" class="responsive image circle"> 
+								<span class="title"><c:out value="${cand.name }"/></span>
+									
+								<p>
+									<c:out value="${cand.city }, ${cand.state }"/>
+								</p> <a href="#!" class="secondary-content"><i
+									class="material-icons grey-text">favorite_border</i></a>
+						</li>
+					</a>
+					</c:forEach>
+					
+				</ul>
+			</div>
 			</div>
 		</div>
 	</div>

@@ -1,6 +1,5 @@
 package com.shelby.project.controllers;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,7 +12,9 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -156,6 +157,17 @@ public class SiteController {
 		}
 	}
 	
+	@GetMapping("/showCandidates")
+	public String showCandidates(Model model) {
+		model.addAttribute("candidates", ss.getAllCandidates());
+		return "showCand.jsp";
+	}
+	
+	@GetMapping("/showCandidate/{id}")
+	public String showSelectCandidate(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("candidate", ss.findCandidateById(id));
+		return "candProfile.jsp";
+	}
 	
 	
 	

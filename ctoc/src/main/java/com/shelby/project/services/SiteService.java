@@ -1,6 +1,8 @@
 package com.shelby.project.services;
 
 import java.security.Principal;
+import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -68,5 +70,18 @@ public class SiteService {
 		Constit c = findConstByusername(principal.getName());
 		issue.setIssueAuthor(c);
 		is.save(issue);
+	}
+	
+	public List<Candidate> getAllCandidates(){
+		return candRepo.findAll();
+	}
+	
+	public Candidate findCandidateById(Long id) {
+		Optional<Candidate> opcand = candRepo.findById(id);
+		if(opcand.isPresent()) {
+			return opcand.get();
+		} else {
+			return null;
+		}
 	}
 }
