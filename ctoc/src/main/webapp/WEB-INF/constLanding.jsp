@@ -25,9 +25,9 @@
 <title>Candidate Profile</title>
 
 <style>
-.divider {
-	background-color:
-}
+	ul li a {
+		color:#f44336;
+	}
 </style>
 
 </head>
@@ -127,20 +127,23 @@
 
 		<div class="row">
 			<div class="col s12 card">
-				<h5 class="center-align">Platform</h5>
+				<h5 class="center-align">Concerns</h5>
 				<ul class="collection  z-depth-1">
-					<li class="collection-item">Tacimates percipitur sadipscing
-						mel eu, ea putant bonorum definitiones duo.</li>
-					<li class="collection-item">Tacimates percipitur sadipscing
-						mel eu, ea putant bonorum definitiones duo.</li>
-					<li class="collection-item">Tacimates percipitur sadipscing
-						mel eu, ea putant bonorum definitiones duo.</li>
-					<li class="collection-item">Tacimates percipitur sadipscing
-						mel eu, ea putant bonorum definitiones duo.</li>
+					<c:forEach items="${issues }" var="issue">
+						<li class="collection-item title">
+						<span class="title"><c:out value="${issue.topic}"/></span>
+							
+							<a href="#!" class="secondary-content"><i
+							class="material-icons grey-text">cancel</i></a>
+						<p>
+							<c:out value="${issue.content}"/>
+						</p>
+						</li>
+					</c:forEach>
 				</ul>
 				<div class="divider red"></div>
 				<p class="center-align">
-					<a href="#addIssue" class=" modal-trigger black-text"><i class="material-icons red-text">add_box</i>
+					<a href="#addIssue" class=" modal-trigger blue-text"><i class="material-icons blue-text">add_box</i>
 					
 					</a>
 				</p>
@@ -149,13 +152,18 @@
 		
 		<div id="addIssue" class="modal">
 			<div class="modal-content">
-				<h4>Upload a profile picture</h4>
-				<form action="/upload?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+				<h4>Raise a new Issue</h4>
+				<form action="/addIssue?${_csrf.parameterName}=${_csrf.token}" method="post" modelAttribute="newIssue">
+				<div class="input-field">
+					<input type="text" name="topic" id="topic" />
+					<label for="topic">Topic</label>
+				</div>
 					<div class="input-field">
-						<input type="file" name="file" id="pic" />
+						<textarea class="materialize-textarea" id="content" name="content"></textarea>
+						<label for="content">Content</label>
 					</div>
 			<div class="modal-footer">
-				<button class="btn" type="submit">upload</button>
+				<button class="btn" type="submit">Submit</button>
 			</div>
 				</form>
 			</div>

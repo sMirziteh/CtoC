@@ -1,12 +1,18 @@
 package com.shelby.project.services;
 
+import java.security.Principal;
+
+import javax.validation.Valid;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.shelby.project.models.Candidate;
 import com.shelby.project.models.Constit;
+import com.shelby.project.models.Issue;
 import com.shelby.project.repositories.CandidateRepo;
 import com.shelby.project.repositories.ConstitRepo;
+import com.shelby.project.repositories.IssueRepo;
 import com.shelby.project.repositories.RoleRepo;
 
 @Service
@@ -15,12 +21,14 @@ public class SiteService {
 	private CandidateRepo candRepo;
 	private ConstitRepo constitRepo;
 	private RoleRepo roleRepo;
+	private IssueRepo is;
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	public SiteService(CandidateRepo candRepo, ConstitRepo constitRepo, RoleRepo roleRepo, BCryptPasswordEncoder bCryptPasswordEncoder) {
+	public SiteService(CandidateRepo candRepo, ConstitRepo constitRepo, RoleRepo roleRepo, IssueRepo is, BCryptPasswordEncoder bCryptPasswordEncoder) {
 		this.candRepo = candRepo;
 		this.constitRepo = constitRepo;
 		this.roleRepo = roleRepo;
+		this.is = is;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 	
@@ -54,5 +62,11 @@ public class SiteService {
 		candid.setProfilePic(filePath);
 		candRepo.save(candid);
 		
+	}
+
+	public void saveNewIssue(Principal principal, @Valid Issue issue) {
+		Constit c = findConstByusername(principal.getName());
+		issue.setIssueAuthor(c);
+		is.save(issue);
 	}
 }

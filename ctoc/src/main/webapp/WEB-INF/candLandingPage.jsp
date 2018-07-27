@@ -25,8 +25,8 @@
 <title>Candidate Profile</title>
 
 <style>
-	.divider {
-		background-color: 
+	ul li a {
+		color:#f44336;
 	}
 </style>
 

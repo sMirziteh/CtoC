@@ -5,11 +5,10 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.shelby.project.models.Candidate;
+import com.shelby.project.models.Issue;
 
 @Repository
-public interface CandidateRepo extends CrudRepository<Candidate, Long>{
+public interface IssueRepo extends CrudRepository<Issue, Long>{
 
-	List<Candidate> findAll();
-	Candidate findByUsername(String username);
+	List<Issue> findAll();
 }

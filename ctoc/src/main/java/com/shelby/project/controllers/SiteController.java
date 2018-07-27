@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.shelby.project.models.Candidate;
 import com.shelby.project.models.Constit;
+import com.shelby.project.models.Issue;
 import com.shelby.project.services.SiteService;
 import com.shelby.project.validator.CandValidator;
 import com.shelby.project.validator.ConstValidator;
@@ -88,6 +89,7 @@ public class SiteController {
 
 	@RequestMapping(value = { "/userLanding" })
 	public String home(Principal principal, Model model) {
+		model.addAttribute("newIssue", new Issue());
 		String username = principal.getName();
 		Candidate cand = ss.findCandByUsername(username);
 		Constit constit = ss.findConstByusername(username);
@@ -95,6 +97,8 @@ public class SiteController {
 			model.addAttribute("currentUser", cand);
 			return "candLandingPage.jsp";
 		} else if (constit != null) {
+			System.out.println("constit issues: " + constit.getRaisedIssues());
+			model.addAttribute("issues", constit.getRaisedIssues());
 			model.addAttribute("currentUser", constit);
 			return "constLanding.jsp";
 		}
@@ -141,5 +145,22 @@ public class SiteController {
 		}
 		return "redirect:/userLanding";
 	}
+	
+	@PostMapping("/addIssue")
+	public String addIssue(@Valid @ModelAttribute("newIssue") Issue issue, BindingResult br, Model model, Principal principal) {
+		if(br.hasErrors()) {
+			return "constitLanding.jsp";
+		} else {
+			ss.saveNewIssue(principal, issue);
+			return "redirect:/userLanding";
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
 
 }
