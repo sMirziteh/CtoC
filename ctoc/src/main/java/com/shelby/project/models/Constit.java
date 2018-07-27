@@ -19,6 +19,8 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @Entity
 @Table(name="constituents")
 public class Constit {
@@ -36,6 +38,8 @@ public class Constit {
 	private String city;
 	private String state;
 	private String zipcode;
+	private String pparty;
+	private String profilePic;
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
@@ -225,6 +229,34 @@ public class Constit {
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
+
+
+
+	public String getPparty() {
+		return pparty;
+	}
+
+
+
+	public void setPparty(String pparty) {
+		this.pparty = pparty;
+	}
+
+
+
+	public String getProfilePic() {
+		return profilePic;
+	}
+
+
+
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
+
+
+
+
 
 	
 }

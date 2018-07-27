@@ -40,7 +40,19 @@ public class SiteService {
 		return candRepo.findByUsername(email);
 	}
 
-	public Constit findConstByEmail(String email) {
+	public Constit findConstByusername(String email) {
 		return constitRepo.findByUsername(email);
+	}
+
+	public void savePicPath(String filePath, Constit constit) {
+		constit.setProfilePic(filePath);
+		constitRepo.save(constit);
+		
+	}
+
+	public void savePicPath(String filePath, Candidate candid) {
+		candid.setProfilePic(filePath);
+		candRepo.save(candid);
+		
 	}
 }

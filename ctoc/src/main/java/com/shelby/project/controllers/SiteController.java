@@ -1,5 +1,10 @@
 package com.shelby.project.controllers;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 
 import javax.servlet.http.HttpSession;
@@ -11,7 +16,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.shelby.project.models.Candidate;
 import com.shelby.project.models.Constit;
@@ -38,8 +45,8 @@ public class SiteController {
 	}
 
 	@PostMapping("/registration/candidate")
-	public String registration(@Valid @ModelAttribute("candidate") Candidate candidate, BindingResult result, Model model,
-			HttpSession session) {
+	public String registration(@Valid @ModelAttribute("candidate") Candidate candidate, BindingResult result,
+			Model model, HttpSession session) {
 		candV.validate(candidate, result);
 		if (result.hasErrors()) {
 			model.addAttribute("constit", new Constit());
@@ -73,17 +80,17 @@ public class SiteController {
 		}
 		return "login.jsp";
 	}
-	
+
 	@RequestMapping("/")
 	public String landing(Model model) {
 		return "landing.jsp";
 	}
 
-	@RequestMapping(value = {"/userLanding" })
+	@RequestMapping(value = { "/userLanding" })
 	public String home(Principal principal, Model model) {
 		String username = principal.getName();
 		Candidate cand = ss.findCandByUsername(username);
-		Constit constit = ss.findConstByEmail(username);
+		Constit constit = ss.findConstByusername(username);
 		if (cand != null) {
 			model.addAttribute("currentUser", cand);
 			return "candLandingPage.jsp";
@@ -93,12 +100,46 @@ public class SiteController {
 		}
 		return "landing";
 	}
-	
+
 	@RequestMapping("/cand")
-    public String candPage(Principal principal, Model model) {
-        String username = principal.getName();
-        model.addAttribute("currentUser", ss.findCandByUsername(username));
-        return "adminPage.jsp";
-    }
+	public String candPage(Principal principal, Model model) {
+		String username = principal.getName();
+		model.addAttribute("currentUser", ss.findCandByUsername(username));
+		return "adminPage.jsp";
+	}
+
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	public String receiveFile(@RequestParam("file") MultipartFile file, Principal principal)
+			throws IOException {
+		System.out.println("in upload");
+		 String UPLOADED_FOLDER = "/home/smirziteh/DOJO/java_stack/Project/CtoC/ctoc/src/main/resources/static/images/";
+		if (!file.isEmpty()) {
+//			System.out.println("File" + description);
+		}
+		try {
+			
+			// Get the file and save it somewhere
+			byte[] bytes = file.getBytes();
+			Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+			Files.write(path, bytes);
+			
+			System.out.println("file: " + file.getOriginalFilename());
+			String filePath = "images/"+ file.getOriginalFilename();
+			String username = principal.getName();
+			System.out.println("filepath: " + filePath);
+			Constit constit = ss.findConstByusername(username);
+			if(constit == null) {
+				Candidate candid = ss.findCandByUsername(username);
+				ss.savePicPath(filePath, candid);
+			} else {
+				ss.savePicPath(filePath, constit);
+				
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "redirect:/userLanding";
+	}
 
 }

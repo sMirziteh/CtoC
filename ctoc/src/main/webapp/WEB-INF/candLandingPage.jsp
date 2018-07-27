@@ -59,8 +59,10 @@
 		<div class="row">
 			<div class="col s12 card">
 				<div class="row">
-					<div class="col s5">
-						
+					<div class="section col s5">
+						<br />
+						<img src="${currentUser.profilePic }" alt="picture of ${currentUser.name }" class="circle responsive-img" />
+					
 					</div>
 					<div class="col s6 offset-s1">
 						<h6><b><c:out value="${currentUser.name}"/></b></h6>
@@ -76,10 +78,24 @@
 				</div>
 					<div class="divider red"></div>
 					<p class="center-align">
-						<a href="" class="grey-text">
+						<a href="#edit" class="grey-text modal-trigger">
 							Edit Profile  <i class="tiny material-icons grey-text">build</i>
 						</a>
 					</p>
+			</div>
+		</div>
+		
+		<div id="edit" class="modal">
+			<div class="modal-content">
+				<h4>Upload a profile picture</h4>
+				<form action="/upload?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+					<div class="input-field">
+						<input type="file" name="file" id="pic" />
+					</div>
+			<div class="modal-footer">
+				<button class="btn" type="submit">upload</button>
+			</div>
+				</form>
 			</div>
 		</div>
 		
@@ -129,6 +145,8 @@
 	
 	 $(document).ready(function(){
 		    $('.sidenav').sidenav();
+			$('.modal').modal();
+
 		  });
 	</script>
 	
