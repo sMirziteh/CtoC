@@ -45,3 +45,4 @@ Version 1.2:
     • Constituents receive notifications when Candidates change profile/platform changes (WEBsockets)
     • Constituents receive notifications when their issues are adopted by Candidates (WEBsockets)
     • 
+# CtoC
